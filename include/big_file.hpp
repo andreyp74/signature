@@ -25,10 +25,10 @@ namespace sign {
 		big_file& operator=(big_file&) = delete;
 
 	private:
+		std::vector<std::byte> buffer;
+		std::ifstream file;
 		std::string file_name;
 		size_t chunk_size;
 		size_t chunk_number;
-		std::vector<std::byte> buffer;
-		std::ifstream file;
 	};
 }

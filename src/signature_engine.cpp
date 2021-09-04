@@ -10,7 +10,7 @@ namespace sign {
 	signature_engine::signature_engine() : sign(std::make_unique<signature>())
 	{
 		auto num_threads = std::thread::hardware_concurrency() - 1;
-		queue.reset(std::make_unique<threadsafe_queue<big_file::chunk>>(10 * num_threads).release());
+		queue.reset(std::make_unique<threadsafe_queue<big_file::chunk>>(16 * num_threads).release());
 
 		for (size_t i = 0; i < num_threads; ++i)
 		{

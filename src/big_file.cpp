@@ -12,8 +12,6 @@ namespace sign {
 		if (!file) {
 			std::cerr << "Couldn't open file: " << file_name << std::endl;
 		}
-		//TODO
-		buffer.resize(chunk_size, std::byte(0));
 	}
 
 	std::shared_ptr<big_file::chunk> big_file::read_next_chunk() 
@@ -22,11 +20,10 @@ namespace sign {
 
 		if (file) 
 		{
-			memset(buffer.data(), 0, buffer.size());
-			file.read((char*)&buffer[0], chunk_size);
+			buffer.resize(chunk_size, std::byte(0));
+			file.read((char*)buffer.data(), chunk_size);
+			file_chunk->data.swap(buffer);
 			file_chunk->number = chunk_number;
-			// this is a copy!!!
-			file_chunk->data.assign(buffer.begin(), buffer.end());
 
 			++chunk_number;
 		}
