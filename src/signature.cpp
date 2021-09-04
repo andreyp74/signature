@@ -18,7 +18,7 @@ namespace sign {
 		return std::vector<unsigned int>(digest, digest + sizeof(digest) / sizeof(unsigned int));
 	}
 
-	void signature::add(size_t number, const std::vector<std::byte>& data)
+	void signature::append(size_t number, const std::vector<std::byte>& data)
 	{
 		auto hash = calc_hash(data);
 

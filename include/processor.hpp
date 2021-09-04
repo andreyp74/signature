@@ -5,9 +5,11 @@
 
 namespace sign {
 
+	//Main class of the application
 	class processor {
 	public:
 		processor(const std::string& input_file, const std::string& output_file, size_t chunk_size);
+		//Run all
 		void run();
 
 	private:

@@ -6,6 +6,7 @@
 
 namespace sign {
 
+	//Template class implements thread safe queue storage
 	template<typename T>
 	class threadsafe_queue final
 	{
@@ -13,6 +14,7 @@ namespace sign {
 
 		explicit threadsafe_queue(size_t max_length) : max_length(max_length) {}
 
+		//Take element from the queue. Blocks while the queue is empty
 		std::shared_ptr<T> pop() 
 		{
 			std::unique_lock<std::mutex> lock(queue_mutex);
@@ -30,6 +32,7 @@ namespace sign {
 			return item;
 		}
 
+		//Take element from the queue if the queue not empty. Never blocks
 		std::shared_ptr<T> try_pop()
 		{
 			std::unique_lock<std::mutex> lock(queue_mutex);
@@ -45,7 +48,7 @@ namespace sign {
 			return item;
 		}
 
-
+		//Put element to the queue. Blocks while the queue is full
 		void push(std::shared_ptr<T> item)
 		{
 			std::unique_lock<std::mutex> lock(queue_mutex);

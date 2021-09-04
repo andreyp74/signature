@@ -47,9 +47,6 @@ namespace sign {
 
 	void signature_engine::run()
 	{
-		using namespace std::chrono;
-		using std::chrono::milliseconds;
-
 		try
 		{
 			while (!done || !queue->empty())
@@ -57,7 +54,7 @@ namespace sign {
 				auto chunk = queue->try_pop();
 				if (chunk)
 				{
-					sign->add(chunk->number, chunk->data);
+					sign->append(chunk->number, chunk->data);
 				}
 			}
 		}

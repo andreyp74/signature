@@ -7,9 +7,11 @@
 
 namespace sign {
 
+	//Class implements chunk-by-chunk file reader
 	class big_file 
 	{
 	public:
+		//Structure contains file chunk data and its attributes
 		struct chunk 
 		{
 			std::vector<std::byte> data;
@@ -18,6 +20,7 @@ namespace sign {
 		};
 
 		big_file(const std::string& file_name, size_t chunk_size);
+		//Read next chunk of file
 		std::shared_ptr<chunk> read_next_chunk();
 
 		//forbidden copy

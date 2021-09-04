@@ -7,15 +7,19 @@
 #include <boost/uuid/detail/sha1.hpp>
 
 namespace sign {
+	//Class implements the calculation of the the common chunks signature
 	class signature 
 	{
 	public:
 		using signature_type = std::map<size_t, std::vector<unsigned int>>;
 
 		signature();
-		void add(size_t number, const std::vector<std::byte>& data);
-		void flush(const std::string& file_name);
 
+		//Calculate SHA1 hash and append it to the common signature
+		void append(size_t number, const std::vector<std::byte>& data);
+		//Flush result to file
+		void flush(const std::string& file_name);
+		//Calculate SHA1 hash
 		std::vector<unsigned int> calc_hash(const std::vector<std::byte>& data);
 
 		//forbidden copy

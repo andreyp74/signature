@@ -13,13 +13,16 @@
 
 namespace sign {
 
+	//Class implements thread pool for processing file chunks
 	class signature_engine final {
 	public:
 
 		signature_engine();
 		~signature_engine();
 
+		//Submit chunk for processing
 		void submit(std::shared_ptr<big_file::chunk> chunk);
+		//Flush result to file
 		void flush(const std::string& file_name);
 
 		//forbidden copy

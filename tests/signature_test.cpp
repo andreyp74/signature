@@ -84,9 +84,9 @@ BOOST_AUTO_TEST_CASE(flush)
 	std::vector<std::byte> data0((const std::byte*)s0.c_str(), (const std::byte*)(s0.c_str() + s0.size()));
 	std::vector<std::byte> data1((const std::byte*)s1.c_str(), (const std::byte*)(s1.c_str() + s1.size()));
 	std::vector<std::byte> data2((const std::byte*)s2.c_str(), (const std::byte*)(s2.c_str() + s2.size()));
-	sign.add(0, data0);
-	sign.add(1, data1);
-	sign.add(2, data2);
+	sign.append(0, data0);
+	sign.append(1, data1);
+	sign.append(2, data2);
 
 	sign.flush("./test_sign");
 

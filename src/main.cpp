@@ -11,7 +11,8 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	size_t chunk_size = 1024 * 1024; // default chunk_size == 1Mb
+	// default chunk_size == 1Mb
+	size_t chunk_size = 1024 * 1024; 
 	if (argc == 4)
 	{
 		chunk_size = std::stoul(argv[3]) * 1024 * 1024;
