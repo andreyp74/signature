@@ -26,11 +26,11 @@ BOOST_AUTO_TEST_CASE(engine_flush)
 	std::vector<std::byte> data2((const std::byte*)s2.c_str(), (const std::byte*)(s2.c_str() + s2.size()));
 
 	sign::signature_engine engine;
-	auto chunk0 = std::make_shared<sign::big_file::chunk>(sign::big_file::chunk{ data0, 0, false });
+	auto chunk0 = std::make_shared<sign::big_file::chunk>(sign::big_file::chunk{ data0, 0 });
 	engine.submit(chunk0);
-	auto chunk1 = std::make_shared<sign::big_file::chunk>(sign::big_file::chunk{ data1, 1, false });
+	auto chunk1 = std::make_shared<sign::big_file::chunk>(sign::big_file::chunk{ data1, 1 });
 	engine.submit(chunk1);
-	auto chunk2 = std::make_shared<sign::big_file::chunk>(sign::big_file::chunk{ data2, 2, false });
+	auto chunk2 = std::make_shared<sign::big_file::chunk>(sign::big_file::chunk{ data2, 2 });
 	engine.submit(chunk2);
 
 	engine.flush("./test_engine_result");

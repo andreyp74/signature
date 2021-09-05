@@ -16,7 +16,6 @@ namespace sign {
 		{
 			std::vector<std::byte> data;
 			size_t number;
-			bool eof = false;
 		};
 
 		big_file(const std::string& file_name, size_t chunk_size);

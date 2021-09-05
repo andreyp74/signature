@@ -23,14 +23,14 @@ namespace sign {
 		auto t0 = high_resolution_clock::now();
 
 		auto engine = std::make_unique<signature_engine>();
-		auto file = std::make_unique<big_file>(input_file, chunk_size);
+		auto source_file = std::make_unique<big_file>(input_file, chunk_size);
 
 		auto t1 = high_resolution_clock::now();
 
 		for (size_t i = 0; ; ++i) 
 		{
-			auto chunk = file->read_next_chunk();
-			if (chunk->eof)
+			auto chunk = source_file->read_next_chunk();
+			if (! chunk)
 				break;
 
 			engine->submit(chunk);
