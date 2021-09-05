@@ -43,7 +43,7 @@ namespace sign {
 		auto t3 = high_resolution_clock::now();
 
 		std::cout << "Create time: " << duration_cast<milliseconds>(t1 - t0).count() << " milliseconds" << std::endl;
-		std::cout << "Read time:   " << duration_cast<milliseconds>(t2 - t1).count() << " milliseconds" << std::endl;
+		std::cout << "Process time:   " << duration_cast<milliseconds>(t2 - t1).count() << " milliseconds" << std::endl;
 		std::cout << "Flush time:  " << duration_cast<milliseconds>(t3 - t2).count() << " milliseconds" << std::endl;
 		std::cout << "Total time:  " << duration_cast<milliseconds>(t3 - t0).count() << " milliseconds" << std::endl;
 	}

@@ -45,6 +45,7 @@ namespace sign {
 		}
 	}
 
+	//Thread function
 	void signature_engine::run()
 	{
 		try
