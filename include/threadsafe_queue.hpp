@@ -13,6 +13,17 @@ namespace sign {
 	public:
 
 		explicit threadsafe_queue(size_t max_length) : max_length(max_length) {}
+		~threadsafe_queue()
+		{
+			try
+			{
+				release();
+			}
+			catch (std::exception& err)
+			{
+				std::cerr << err.what() << std::endl;
+			}
+		}
 
 		//Take element from the queue. Blocks while the queue is empty
 		std::shared_ptr<T> pop() 
@@ -75,7 +86,7 @@ namespace sign {
 			return queue.size();
 		}
 
-		void release() 
+		void release()
 		{
 			done = true;
 			not_empty.notify_all();

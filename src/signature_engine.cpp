@@ -50,7 +50,16 @@ namespace sign {
 	{
 		try
 		{
-			while (!done || !queue->empty())
+			while (!done)
+			{
+				auto chunk = queue->try_pop();
+				if (chunk)
+				{
+					sign->append(chunk->number, chunk->data);
+				}
+			}
+
+			while (!queue->empty())
 			{
 				auto chunk = queue->try_pop();
 				if (chunk)
