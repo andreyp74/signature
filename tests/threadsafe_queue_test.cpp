@@ -72,9 +72,10 @@ namespace {
 		while(true)
 		{
 			auto value = queue->try_pop();
+			if (!value)
+				continue;
 			BOOST_CHECK(*value == prev_value + 1);
 			prev_value = *value;
-
 			if (*value == 99)
 				break;
 		}

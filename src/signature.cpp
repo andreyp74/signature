@@ -1,6 +1,6 @@
 #include <fstream>
 #include <iostream>
-#include <iostream>
+#include <cstdio>
 #include "signature.hpp"
 
 namespace sign {
@@ -34,10 +34,11 @@ namespace sign {
 
 	void signature::flush(const std::string& file_name)
 	{
-		std::ofstream result(file_name, std::ios::binary | std::ios::out | std::ios::trunc);
+		std::string tmp_file_name = std::tmpnam(nullptr);
+		std::ofstream result(tmp_file_name, std::ios::binary | std::ios::out | std::ios::trunc);
 		if (!result)
 		{
-			std::cerr << "Couldn't create file: " << file_name << std::endl;
+			std::cerr << "Couldn't create signature file: " << tmp_file_name << std::endl;
 			return;
 		}
 
@@ -48,6 +49,10 @@ namespace sign {
 		}
 		result.close();
 
-		std::cout << "File with signature " << file_name << " was written successfully" << std::endl;
+		//rename temporary file to the target
+		if (std::rename(tmp_file_name.c_str(), file_name.c_str()))
+			std::cerr << "Error during creation of the signature file: " << file_name << std::endl;
+		else
+			std::cout << "File with signature " << file_name << " was written successfully" << std::endl;
 	}
 }
