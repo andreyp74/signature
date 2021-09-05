@@ -117,6 +117,4 @@ BOOST_AUTO_TEST_CASE(release)
 	queue.release();
 
 	th.join();
-
-	BOOST_CHECK(!queue.empty());
  }
