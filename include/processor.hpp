@@ -13,8 +13,8 @@ namespace sign {
 		void run();
 
 	private:
-		std::string input_file;
-		std::string output_file;
-		size_t chunk_size;
+		const std::string input_file;
+		const std::string output_file;
+		const size_t chunk_size;
 	};
 }

@@ -49,6 +49,7 @@ namespace sign {
 		}
 		result.close();
 
+		//remove old file if exists
 		std::remove(file_name.c_str());
 		//rename temporary file to the target
 		if (std::rename(tmp_file_name.c_str(), file_name.c_str()))

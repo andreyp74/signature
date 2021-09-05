@@ -29,8 +29,8 @@ namespace sign {
 	private:
 		std::vector<std::byte> buffer;
 		std::ifstream file;
-		std::string file_name;
-		size_t chunk_size;
+		const std::string file_name;
+		const size_t chunk_size;
 		size_t chunk_number;
 	};
 }

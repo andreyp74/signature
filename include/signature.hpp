@@ -17,7 +17,7 @@ namespace sign {
 
 		//Calculate SHA1 hash and append it to the common signature
 		void append(size_t number, const std::vector<std::byte>& data);
-		//Flush result to file
+		//Flush result to the file
 		void flush(const std::string& file_name);
 		//Calculate SHA1 hash
 		std::vector<unsigned int> calc_hash(const std::vector<std::byte>& data);

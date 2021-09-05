@@ -103,6 +103,6 @@ namespace sign {
 		std::condition_variable not_full;
 		std::atomic_bool done{ false };
 		std::deque<std::shared_ptr<T>> queue;
-		size_t max_length;
+		const size_t max_length;
 	};
 }
