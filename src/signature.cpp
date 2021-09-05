@@ -49,6 +49,7 @@ namespace sign {
 		}
 		result.close();
 
+		std::remove(file_name.c_str());
 		//rename temporary file to the target
 		if (std::rename(tmp_file_name.c_str(), file_name.c_str()))
 			std::cerr << "Error during creation of the signature file: " << file_name << std::endl;
