@@ -38,8 +38,7 @@ namespace sign {
 		std::ofstream result(tmp_file_name, std::ios::binary | std::ios::out | std::ios::trunc);
 		if (!result)
 		{
-			std::cerr << "Couldn't create signature file: " << tmp_file_name << std::endl;
-			return;
+			throw std::runtime_error("Couldn't create signature file: " + tmp_file_name);
 		}
 
 		auto sign_tmp = return_signature();
@@ -53,8 +52,7 @@ namespace sign {
 		std::remove(file_name.c_str());
 		//rename temporary file to the target
 		if (std::rename(tmp_file_name.c_str(), file_name.c_str()))
-			std::cerr << "Error during creation of the signature file: " << file_name << std::endl;
-		else
-			std::cout << "File with signature " << file_name << " was written successfully" << std::endl;
+			throw std::runtime_error("Error during creation of the signature file: " + file_name);
+		std::cout << "File with signature " << file_name << " was written successfully" << std::endl;
 	}
 }

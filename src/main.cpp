@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
 	catch (std::exception& err) 
 	{
 		std::cerr << "Signature: error occurred: " << err.what() << std::endl;
+		return -1;
 	}
 
     return 0;

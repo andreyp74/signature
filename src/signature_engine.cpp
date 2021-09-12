@@ -7,11 +7,11 @@
 
 namespace sign {
 
-	const size_t QUEUE_RATE = 16;
+	const size_t QUEUE_RATE = 2;
 
 	signature_engine::signature_engine() : sign(std::make_unique<signature>())
 	{
-		auto num_threads = std::thread::hardware_concurrency() - 1;
+		auto num_threads = std::thread::hardware_concurrency();
 		queue.reset(std::make_unique<threadsafe_queue<big_file::chunk>>(QUEUE_RATE * num_threads).release());
 
 		for (size_t i = 0; i < num_threads; ++i)
@@ -40,6 +40,7 @@ namespace sign {
 	void signature_engine::stop()
 	{
 		done = true;
+		queue->release();
 		for (auto& thread : thread_pool)
 		{
 			if (thread.joinable())
@@ -54,7 +55,7 @@ namespace sign {
 		{
 			while (!done)
 			{
-				auto chunk = queue->try_pop();
+				auto chunk = queue->pop();
 				if (chunk)
 				{
 					sign->append(chunk->number, chunk->data);
